@@ -1,0 +1,230 @@
+:root {
+    --primary: #0fffc1;
+    --secondary: #ff00ff;
+    --dark: #0a0a12;
+    --darker: #050508;
+    --terminal-bg: rgba(0, 20, 27, 0.9);
+    --glow: 0 0 10px var(--primary);
+}
+
+body {
+    margin: 0;
+    background: var(--darker);
+    color: var(--primary);
+    font-family: 'Share Tech Mono', monospace;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.cyberpunk-terminal {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: radial-gradient(ellipse at bottom, var(--dark) 0%, var(--darker) 100%);
+}
+
+.header {
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(15, 255, 193, 0.2);
+}
+
+.title-glitch {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    margin: 0;
+    position: relative;
+    color: var(--primary);
+    text-shadow: var(--glow);
+    letter-spacing: 0.2em;
+    animation: glitch 5s infinite alternate;
+}
+
+.title-glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    text-shadow: -3px 0 var(--secondary);
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim 3s infinite alternate;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-top: 0.5rem;
+    letter-spacing: 0.5em;
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+    padding: 1rem;
+    gap: 1.5rem;
+    min-height: 0;
+}
+
+.render-view {
+    flex: 1;
+    position: relative;
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 20px rgba(15, 255, 193, 0.2);
+    overflow: hidden;
+}
+
+#renderCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: black;
+}
+
+.render-stats {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 1.5rem;
+    background: var(--terminal-bg);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary);
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--secondary);
+    letter-spacing: 0.1em;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.control-panel {
+    width: 300px;
+    background: var(--terminal-bg);
+    border: 1px solid var(--primary);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+}
+
+.panel-section {
+    border-bottom: 1px solid rgba(15, 255, 193, 0.2);
+    padding-bottom: 1.5rem;
+}
+
+.section-title {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.cyber-select {
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.7rem;
+    font-family: 'Share Tech Mono', monospace;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230fffc1'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1em;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.cyber-button {
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.7rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+}
+
+.cyber-button:hover {
+    background: var(--primary);
+    color: black;
+    box-shadow: var(--glow);
+}
+
+.cyber-button.active {
+    background: var(--primary);
+    color: black;
+    font-weight: bold;
+    box-shadow: var(--glow);
+}
+
+.console-log {
+    height: 150px;
+    background: var(--terminal-bg);
+    border-top: 1px solid var(--primary);
+    padding: 1rem;
+    overflow-y: auto;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.log-entry {
+    margin-bottom: 0.3rem;
+    color: var(--primary);
+}
+
+.log-entry::before {
+    content: "> ";
+    color: var(--secondary);
+}
+
+@keyframes glitch {
+    0% { text-shadow: var(--glow); }
+    20% { text-shadow: -5px 0 var(--secondary), 5px 0 var(--primary); }
+    100% { text-shadow: var(--glow); }
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(0, 900px, 0, 0); }
+    10% { clip: rect(0, 900px, 20px, 0); }
+    20% { clip: rect(0, 900px, 60px, 0); }
+    30% { clip: rect(0, 900px, 30px, 0); }
+    40% { clip: rect(0, 900px, 70px, 0); }
+    100% { clip: rect(0, 900px, 0, 0); }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .control-panel {
+        width: auto;
+    }
+    
+    .title-glitch {
+        font-size: 2rem;
+    }
+}

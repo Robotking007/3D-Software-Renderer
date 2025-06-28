@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Software Renderer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cyberpunk-terminal">
+        <div class="header">
+            <div class="title-glitch" data-text="3D RENDERER">3D RENDERER</div>
+            <div class="subtitle">WEBASSEMBLY SOFTWARE RENDERING ENGINE</div>
+        </div>
+
+        <div class="main-container">
+            <div class="render-view">
+                <canvas id="renderCanvas"></canvas>
+                <div class="render-stats">
+                    <div class="stat">
+                        <span class="stat-label">TRIANGLES</span>
+                        <span id="triCount" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">FPS</span>
+                        <span id="fpsCounter" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <div class="panel-section">
+                    <h3 class="section-title">MODEL</h3>
+                    <select id="modelSelect" class="cyber-select">
+                        <option value="cube">Cube</option>
+                        <option value="sphere">UV Sphere</option>
+                        <option value="monkey">Monkey</option>
+                    </select>
+                </div>
+
+                <div class="panel-section">
+                    <h3 class="section-title">RENDER MODE</h3>
+                    <div class="button-group">
+                        <button id="wireframeBtn" class="cyber-button active">WIREFRAME</button>
+                        <button id="solidBtn" class="cyber-button">SOLID</button>
+                        <button id="texturedBtn" class="cyber-button">TEXTURED</button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3 class="section-title">SHADER</h3>
+                    <div class="button-group">
+                        <button id="flatBtn" class="cyber-button active">FLAT</button>
+                        <button id="normalsBtn" class="cyber-button">NORMALS</button>
+                        <button id="phongBtn" class="cyber-button">PHONG</button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3 class="section-title">CAMERA</h3>
+                    <div class="button-group">
+                        <button id="rotateLeftBtn" class="cyber-button">ROTATE LEFT</button>
+                        <button id="rotateRightBtn" class="cyber-button">ROTATE RIGHT</button>
+                        <button id="resetBtn" class="cyber-button">RESET VIEW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="console-log" id="consoleLog">
+            <div class="log-entry">> System initialized</div>
+            <div class="log-entry">> WASM module loading...</div>
+        </div>
+    </div>
+
+    <script src="wasm-loader.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
